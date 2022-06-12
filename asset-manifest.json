@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tippytippyavatar/static/css/main.b54a752c.css",
+    "main.js": "/tippytippyavatar/static/js/main.c054f184.js",
+    "static/js/787.2ad707b1.chunk.js": "/tippytippyavatar/static/js/787.2ad707b1.chunk.js",
+    "index.html": "/tippytippyavatar/index.html",
+    "main.b54a752c.css.map": "/tippytippyavatar/static/css/main.b54a752c.css.map",
+    "main.c054f184.js.map": "/tippytippyavatar/static/js/main.c054f184.js.map",
+    "787.2ad707b1.chunk.js.map": "/tippytippyavatar/static/js/787.2ad707b1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b54a752c.css",
+    "static/js/main.c054f184.js"
+  ]
+}
