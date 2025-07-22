@@ -1,33 +1,67 @@
 import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { settingsSelector } from '../slices/settings'
 import { renderToString } from 'react-dom/server';
 import { Canvg } from 'canvg';
 import {
-  DownloadOutlined
+  DownloadOutlined,
+  FileImageOutlined
 } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button, Flex, ConfigProvider } from 'antd';
+import { createStyles } from 'antd-style';
+
+
+const useStyle = createStyles(({ prefixCls, css }) => ({
+  linearGradientButton: css`
+    &.${prefixCls}-btn-primary:not([disabled]):not(.${prefixCls}-btn-dangerous) {
+      > span {
+        position: relative;
+      }
+
+      &::before {
+        content: '';
+        background: linear-gradient(135deg, #6253e1, #04befe);
+        position: absolute;
+        inset: -1px;
+        opacity: 1;
+        transition: all 0.3s;
+        border-radius: inherit;
+      }
+
+      &:hover::before {
+        opacity: 0;
+      }
+    }
+  `,
+}));
 
 
 
 
-function Avatar({activeCustomization}){
-  const [skinColor, setSkinColor] = useState('#edb98a');
-  const [hairBack, setHairBack] = useState('h_longhair');
-  const [tattoos, setTattoos] = useState('');
-  const [accesories, setAccesories] = useState();
-  const [eyes, setEyes] = useState('e_default');
-  const [eyebrows, setEyebrows] = useState('eb_default');
-  const [mouth, setMouth] = useState('m_default');
-  const [cloth, setCloth] = useState('c_hoodie');
-  const [hairColor1, setHairColor1] = useState('c_hoodie');
-  const [hairColor2, setHairColor2] = useState('c_hoodie');
-  const [hairColor3, setHairColor3] = useState('c_hoodie');
-  const [fabricColor, setFabricColor] = useState('#545454');
-  const [glassOpacity, setGlassOpacity] = useState('c_hoodie');
-  const [hairFront, setHairFront] = useState('h_longhair');
-  const [facialHair, setFacialHair] = useState();
-  const [glasses, setGlasses] = useState();
-  const [isMenuActive, setIsMenuActive] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
+
+const Avatar = () => {
+  const { styles } = useStyle();
+  const {settings} = useSelector(settingsSelector);
+  const {
+    skinColor,
+    hairBack,
+    tattoos,
+    accesories,
+    eyes,
+    eyebrows,
+    mouth,
+    cloth,
+    hairColor1,
+    hairColor2,
+    hairColor3,
+    fabricColor,
+    glassOpacity,
+    hairFront,
+    facialHair,
+    glasses,
+    isMenuActive,
+    backgroundColor
+  } = settings;
 
   const SvgOutput = () => {
     return(<svg xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' width='360px' height='360px' viewBox='0 0 360 360' preserveAspectRatio='xMidYMid meet'>
@@ -443,217 +477,24 @@ function Avatar({activeCustomization}){
   return(
     <>
 
-<div id='avatar'>
-
+      <div id='avatar'>
           <img src={url} />
-          <div id='footer'>
-              <div id='options' style={{'display': (activeCustomization == 'skincolor') ? 'initial':'none'}}>
-                  <div id='options_title'>SELECT SKIN COLOR</div>
-                  <div id='options_div'>
-                      <div className='skins' id='s_ffdbb4' onClick={() => setSkinColor('#ffdbb4')} style={{'backgroundColor':'#ffdbb4'}}></div>
-                      <div className='skins' id='s_edb98a' onClick={() => setSkinColor('#edb98a')} style={{'backgroundColor':'#edb98a'}}></div>
-                      <div className='skins' id='s_fd9841' onClick={() => setSkinColor('#fd9841')} style={{'backgroundColor':'#fd9841'}}></div>
-                      <div className='skins' id='s_fcee93' onClick={() => setSkinColor('#fcee93')} style={{'backgroundColor':'#fcee93'}}></div>
-                      <div className='skins' id='s_d08b5b' onClick={() => setSkinColor('#d08b5b')} style={{'backgroundColor':'#d08b5b'}}></div>
-                      <div className='skins' id='s_ae5d29' onClick={() => setSkinColor('#ae5d29')} style={{'backgroundColor':'#ae5d29'}}></div>
-                      <div className='skins' id='s_614335' onClick={() => setSkinColor('#614335')} style={{'backgroundColor':'#614335'}}></div>
-                  </div>
-              </div>
-              <div id="options" style={{'display': (activeCustomization == 'eyes') ? 'initial':'none'}}>
-                <div id="options_title">SELECT EYES</div>
-                <div id="options_div">
-                  <div className="eyes" id="e_default" onClick={() => setEyes('e_default')} style={{"backgroundColor":skinColor,"backgroundPosition":"0px 0px"}} />
-                  <div className="eyes" id="e_dizzy" onClick={() => setEyes('e_dizzy')} style={{"backgroundColor":skinColor,"backgroundPosition":"-53px 0px"}} />
-                  <div className="eyes" id="e_eyeroll" onClick={() => setEyes('e_eyeroll')} style={{"backgroundColor":skinColor,"backgroundPosition":"-106px 0px"}} />
-                  <div className="eyes" id="e_happy" onClick={() => setEyes('e_happy')} style={{"backgroundColor":skinColor,"backgroundPosition":"-159px 0px"}} />
-                  <div className="eyes" id="e_close" onClick={() => setEyes('e_close')} style={{"backgroundColor":skinColor,"backgroundPosition":"-212px 0px"}} />
-                  <div className="eyes" id="e_hearts" onClick={() => setEyes('e_hearts')} style={{"backgroundColor":skinColor,"backgroundPosition":"-265px 0px"}} />
-                  <div className="eyes" id="e_side" onClick={() => setEyes('e_side')} style={{"backgroundColor":skinColor,"backgroundPosition":"-318px 0px"}} />
-                  <div className="eyes" id="e_wink" onClick={() => setEyes('e_wink')} style={{"backgroundColor":skinColor,"backgroundPosition":"-371px 0px"}} />
-                  <div className="eyes" id="e_squint" onClick={() => setEyes('e_squint')} style={{"backgroundColor":skinColor,"backgroundPosition":"-424px 0px"}} />
-                  <div className="eyes" id="e_surprised" onClick={() => setEyes('e_surprised')} style={{"backgroundColor":skinColor,"backgroundPosition":"-477px 0px"}} />
-                  <div className="eyes" id="e_winkwacky" onClick={() => setEyes('e_winkwacky')} style={{"backgroundColor":skinColor,"backgroundPosition":"-530px 0px"}} />
-                  <div className="eyes" id="e_cry" onClick={() => setEyes('e_cry')} style={{"backgroundColor":skinColor,"backgroundPosition":"-583px 0px"}} />
-                </div>
-              </div>
-              <div id='options' style={{'display': (activeCustomization == 'eyebrows') ? 'initial':'none'}}>
-                  <div id='options_title'>SELECT EYEBROWS</div>
-                  <div id="options_div">
-                      <div className="eyebrows" id="eb_default" onClick={() => setEyebrows('eb_default')} style={{ backgroundColor: skinColor, backgroundPosition: "0px -53px" }}/>
-                      <div className="eyebrows" id="eb_default2" onClick={() => setEyebrows('eb_default2')} style={{ backgroundColor: skinColor, backgroundPosition: "-53px -53px" }}/>
-                      <div className="eyebrows" id="eb_raised" onClick={() => setEyebrows('eb_raised')} style={{ backgroundColor: skinColor, backgroundPosition: "-106px -53px" }}/>
-                      <div className="eyebrows" id="eb_sad" onClick={() => setEyebrows('eb_sad')} style={{ backgroundColor: skinColor, backgroundPosition: "-159px -53px" }}/>
-                      <div className="eyebrows" id="eb_sad2" onClick={() => setEyebrows('eb_sad2')} style={{ backgroundColor: skinColor, backgroundPosition: "-212px -53px" }}/>
-                      <div className="eyebrows" id="eb_unibrow" onClick={() => setEyebrows('eb_unibrow')} style={{ backgroundColor: skinColor, backgroundPosition: "-265px -53px" }}/>
-                      <div className="eyebrows" id="eb_updown" onClick={() => setEyebrows('eb_updown')} style={{ backgroundColor: skinColor, backgroundPosition: "-318px -53px" }}/>
-                      <div className="eyebrows" id="eb_updown2" onClick={() => setEyebrows('eb_updown2')} style={{ backgroundColor: skinColor, backgroundPosition: "-371px -53px" }}/>
-                      <div className="eyebrows" id="eb_angry" onClick={() => setEyebrows('eb_angry')} style={{ backgroundColor: skinColor, backgroundPosition: "-424px -53px" }}/>
-                      <div className="eyebrows" id="eb_angry2" onClick={() => setEyebrows('eb_angry2')} style={{ backgroundColor: skinColor, backgroundPosition: "-477px -53px" }}/>
-                  </div>
-             </div>
-             <div id="options" style={{'display': (activeCustomization == 'mouth') ? 'initial':'none'}}>
-               <div id="options_title">SELECT MOUTH</div>
-               <div id="options_div">
-                 <div className="mouths" id="m_default" onClick={() => setMouth('m_default')}  style={{ backgroundColor: skinColor, backgroundPosition: "0px -106px" }}/>
-                 <div className="mouths" id="m_twinkle" onClick={() => setMouth('m_twinkle')}  style={{ backgroundColor: skinColor, backgroundPosition: "-53px -106px" }}/>
-                 <div className="mouths" id="m_tongue" onClick={() => setMouth('m_tongue')}  style={{ backgroundColor: skinColor, backgroundPosition: "-106px -106px"}}/>
-                 <div className="mouths" id="m_smile" onClick={() => setMouth('m_smile')}  style={{ backgroundColor: skinColor, backgroundPosition: "-159px -106px" }}/>
-                 <div className="mouths" id="m_serious" onClick={() => setMouth('m_serious')}  style={{ backgroundColor: skinColor, backgroundPosition: "-212px -106px" }}/>
-                 <div className="mouths" id="m_scream" onClick={() => setMouth('m_scream')}  style={{ backgroundColor: skinColor, backgroundPosition: "-265px -106px" }}/>
-                 <div className="mouths" id="m_sad" onClick={() => setMouth('m_sad')}  style={{ backgroundColor: skinColor, backgroundPosition: "-318px -106px" }}/>
-                 <div className="mouths" id="m_grimace" onClick={() => setMouth('m_grimace')}  style={{ backgroundColor: skinColor, backgroundPosition: "-371px -106px" }}/>
-                 <div className="mouths" id="m_eating" onClick={() => setMouth('m_eating')}  style={{ backgroundColor: skinColor, backgroundPosition: "-424px -106px" }}/>
-                 <div className="mouths" id="m_disbelief" onClick={() => setMouth('m_disbelief')}  style={{ backgroundColor: skinColor, backgroundPosition: "-477px -106px" }}/>
-                 <div className="mouths" id="m_concerned" onClick={() => setMouth('m_concerned')}  style={{ backgroundColor: skinColor, backgroundPosition: "-530px -106px" }}/>
-                 <div className="mouths" id="m_vomit" onClick={() => setMouth('m_vomit')}  style={{ backgroundColor: skinColor, backgroundPosition: "-583px -106px" }}/>
-               </div>
-             </div>
-             <div id="options" style={{'display': (activeCustomization == 'hairstyles') ? 'initial':'none'}}>
-               <div id="options_title">SELECT HAIR STYLES</div>
-               <div id="options_div">
-                 <div className="hairstyles" id="h_bold" onClick={() => {setHairBack('h_bold'); setHairFront('h_bold'); }}  style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -159px"}} />
-                 <div className="hairstyles" id="h_longhair" onClick={() => {setHairBack('h_longhair'); setHairFront('h_longhair');}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -159px"}} />
-                 <div className="hairstyles" id="h_longhairbob" onClick={() => {setHairBack('h_longhairbob'); setHairFront('h_longhairbob');}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -159px"}} />
-                 <div className="hairstyles" id="h_hairbun" onClick={() => {setHairBack('h_hairbun'); setHairFront('h_hairbun');}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -159px"}} />
-                 <div className="hairstyles" id="h_longhaircurly" onClick={() => {setHairBack('h_longhaircurly'); setHairFront('h_longhaircurly')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -159px"}} />
-                 <div className="hairstyles" id="h_longhaircurvy" onClick={() => {setHairBack('h_longhaircurvy'); setHairFront('h_longhaircurvy')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-265px -159px"}} />
-                 <div className="hairstyles" id="h_longhairdread" onClick={() => {setHairBack('h_longhairdread'); setHairFront('h_longhairdread')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-318px -159px"}} />
-                 <div className="hairstyles" id="h_nottoolong" onClick={() => {setHairBack('h_nottoolong'); setHairFront('h_nottoolong')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-371px -159px"}} />
-                 <div className="hairstyles" id="h_miawallace" onClick={() => {setHairBack('h_miawallace'); setHairFront('h_miawallace');}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-424px -159px"}} />
-                 <div className="hairstyles" id="h_longhairstraight" onClick={() => {setHairBack('h_longhairstraight'); setHairFront('h_longhairstraight')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-477px -159px"}} />
-                 <div className="hairstyles" id="h_longhairstraight2" onClick={() => {setHairBack('h_longhairstraight2'); setHairFront('h_longhairstraight2')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-530px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairdreads" onClick={() => {setHairBack('h_shorthairdreads'); setHairFront('h_shorthairdreads')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-583px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairdreads2" onClick={() => {setHairBack('h_shorthairdreads2'); setHairFront('h_shorthairdreads2')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-636px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairfrizzle" onClick={() => {setHairBack('h_shorthairfrizzle'); setHairFront('h_shorthairfrizzle')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-689px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairshaggy" onClick={() => {setHairBack('h_shorthairshaggy'); setHairFront('h_shorthairshaggy')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-742px -159px"}} />
-                 <div className="hairstyles" id="h_shorthaircurly" onClick={() => {setHairBack('h_shorthaircurly'); setHairFront('h_shorthaircurly')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-795px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairflat" onClick={() => {setHairBack('h_shorthairflat'); setHairFront('h_shorthairflat')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-848px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairround" onClick={() => {setHairBack('h_shorthairround'); setHairFront('h_shorthairround')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-901px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairwaved" onClick={() => {setHairBack('h_shorthairwaved'); setHairFront('h_shorthairwaved')}}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-954px -159px"}} />
-                 <div className="hairstyles" id="h_shorthairsides" onClick={() => {setHairBack('h_shorthairsides'); setHairFront('h_shorthairsides')}} style={{"backgroundColor":"#ffffff","backgroundPosition":"-1007px -159px"}} />
-               </div>
-             </div>
-             <div id="options" style={{'display': (activeCustomization == 'haircolors') ? 'initial':'none'}}>
-               <div id="options_title">SELECT HAIR COLOR</div>
-               <div id="options_div">
-                 <div className="haircolors" id="hc_bb7748_9a4f2b_6f2912" onClick={() => {setHairColor1("#bb7748"); setHairColor2("#9a4f2b"); setHairColor3("#6f2912");}} style={{"backgroundColor":"#bb7748"}} />
-                 <div className="haircolors" id="hc_404040_262626_101010" onClick={() => {setHairColor1("#404040"); setHairColor2("#262626"); setHairColor3("#101010");}} style={{"backgroundColor":"#404040"}} />
-                 <div className="haircolors" id="hc_c79d63_ab733e_844713" onClick={() => {setHairColor1("#c79d63"); setHairColor2("#ab733e"); setHairColor3("#844713");}} style={{"backgroundColor":"#c79d63"}} />
-                 <div className="haircolors" id="hc_e1c68e_d0a964_b88339" onClick={() => {setHairColor1("#e1c68e"); setHairColor2("#d0a964"); setHairColor3("#b88339");}} style={{"backgroundColor":"#e1c68e"}} />
-                 <div className="haircolors" id="hc_906253_663d32_3b1d16" onClick={() => {setHairColor1("#906253"); setHairColor2("#663d32"); setHairColor3("#3b1d16");}} style={{"backgroundColor":"#906253"}} />
-                 <div className="haircolors" id="hc_f8afaf_f48a8a_ed5e5e" onClick={() => {setHairColor1("#f8afaf"); setHairColor2("#f48a8a"); setHairColor3("#ed5e5e");}} style={{"backgroundColor":"#f8afaf"}} />
-                 <div className="haircolors" id="hc_f1e6cf_e9d8b6_dec393" onClick={() => {setHairColor1("#f1e6cf"); setHairColor2("#e9d8b6"); setHairColor3("#dec393");}} style={{"backgroundColor":"#f1e6cf"}} />
-                 <div className="haircolors" id="hc_d75324_c13215_a31608" onClick={() => {setHairColor1("#d75324"); setHairColor2("#c13215"); setHairColor3("#a31608");}} style={{"backgroundColor":"#d75324"}} />
-                 <div className="haircolors" id="hc_59a0ff_3777ff_194bff" onClick={() => {setHairColor1("#59a0ff"); setHairColor2("#3777ff"); setHairColor3("#194bff");}} style={{"backgroundColor":"#59a0ff"}} />
-               </div>
-             </div>
-
-             <div id="options" style={{'display': (activeCustomization == 'facialhairs') ? 'initial':'none'}}>
-               <div id="options_title">SELECT FACIAL HAIR</div>
-               <div id="options_div">
-                 <div className="facialhairs" id="f_none" onClick={() => setFacialHair("f_none")} style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -212px"}} />
-                 <div className="facialhairs" id="f_magnum" onClick={() => setFacialHair("f_magnum")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -212px"}} />
-                 <div className="facialhairs" id="f_fancy" onClick={() => setFacialHair("f_fancy")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -212px"}} />
-                 <div className="facialhairs" id="f_magestic" onClick={() => setFacialHair("f_magestic")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -212px"}} />
-                 <div className="facialhairs" id="f_light" onClick={() => setFacialHair("f_light")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -212px"}} />
-               </div>
-             </div>
-             <div id="options" style={{'display': (activeCustomization == 'clothes') ? 'initial':'none'}}>
-               <div id="options_title">SELECT CLOTHES</div>
-               <div id="options_div">
-                 <div className="clothes" id="c_vneck" onClick={() => setCloth("c_vneck")} style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -265px"}} />
-                 <div className="clothes" id="c_sweater" onClick={() => setCloth("c_sweater")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -265px"}} />
-                 <div className="clothes" id="c_hoodie" onClick={() => setCloth("c_hoodie")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -265px"}} />
-                 <div className="clothes" id="c_overall" onClick={() => setCloth("c_overall")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -265px"}} />
-                 <div className="clothes" id="c_blazer" onClick={() => setCloth("c_blazer")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -265px"}} />
-               </div>
-             </div>
-             <div id="options" style={{'display': (activeCustomization == 'fabriccolors') ? 'initial':'none'}}>
-              <div id="options_title">SELECT FABRIC COLOR</div>
-              <div id="options_div">
-                <div className="fabriccolors" id="f_545454" onClick={() => setFabricColor("#545454")} style={{"backgroundColor":"#545454"}} />
-                <div className="fabriccolors" id="f_65c9ff" onClick={() => setFabricColor("#65c9ff")} style={{"backgroundColor":"#65c9ff"}} />
-                <div className="fabriccolors" id="f_5199e4" onClick={() => setFabricColor("#5199e4")} style={{"backgroundColor":"#5199e4"}} />
-                <div className="fabriccolors" id="f_25557c" onClick={() => setFabricColor("#25557c")} style={{"backgroundColor":"#25557c"}} />
-                <div className="fabriccolors" id="f_e6e6e6" onClick={() => setFabricColor("#e6e6e6")} style={{"backgroundColor":"#e6e6e6"}} />
-                <div className="fabriccolors" id="f_929598" onClick={() => setFabricColor("#929598")} style={{"backgroundColor":"#929598"}} />
-                <div className="fabriccolors" id="f_a7ffc4" onClick={() => setFabricColor("#a7ffc4")} style={{"backgroundColor":"#a7ffc4"}} />
-                <div className="fabriccolors" id="f_ffdeb5" onClick={() => setFabricColor("#ffdeb5")} style={{"backgroundColor":"#ffdeb5"}} />
-                <div className="fabriccolors" id="f_ffafb9" onClick={() => setFabricColor("#ffafb9")} style={{"backgroundColor":"#ffafb9"}} />
-                <div className="fabriccolors" id="f_ffffb1" onClick={() => setFabricColor("#ffffb1")} style={{"backgroundColor":"#ffffb1"}} />
-                <div className="fabriccolors" id="f_ff5c5c" onClick={() => setFabricColor("#ff5c5c")} style={{"backgroundColor":"#ff5c5c"}} />
-                <div className="fabriccolors" id="f_e3adff" onClick={() => setFabricColor("#e3adff")} style={{"backgroundColor":"#e3adff"}} />
-              </div>
-            </div>
-            <div id="options" style={{'display': (activeCustomization == 'glasses') ? 'initial':'none'}}>
-              <div id="options_title">SELECT GLASSES</div>
-              <div id="options_div">
-                <div className="glasses" id="g_none" onClick={() => setGlasses("g_none")} style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -313px"}} />
-                <div className="glasses" id="g_rambo" onClick={() => setGlasses("g_rambo")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -313px"}} />
-                <div className="glasses" id="g_fancy" onClick={() => setGlasses("g_fancy")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -313px"}} />
-                <div className="glasses" id="g_old" onClick={() => setGlasses("g_old")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -313px"}} />
-                <div className="glasses" id="g_nerd" onClick={() => setGlasses("g_nerd")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -313px"}} />
-                <div className="glasses" id="g_fancy2" onClick={() => setGlasses("g_fancy2")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-265px -313px"}} />
-                <div className="glasses" id="g_harry" onClick={() => setGlasses("g_harry")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-318px -313px"}} />
-              </div>
-            </div>
-            <div id="options" style={{'display': (activeCustomization == 'glassopacity') ? 'initial':'none'}}>
-              <div id="options_title">SELECT GLASS OPACITY</div>
-              <div id="options_div">
-                <div className="glassopacity" id="o_10" onClick={() => setGlassOpacity("o_10")} style={{"backgroundColor":"#ffffff"}}>10%</div>
-                <div className="glassopacity" id="o_25" onClick={() => setGlassOpacity("o_25")}style={{"backgroundColor":"#ffffff"}}>25%</div>
-                <div className="glassopacity" id="o_50" onClick={() => setGlassOpacity("o_50")} style={{"backgroundColor":"#ffffff"}}>50%</div>
-                <div className="glassopacity" id="o_75" onClick={() => setGlassOpacity("o_75")} style={{"backgroundColor":"#ffffff"}}>75%</div>
-                <div className="glassopacity" id="o_100" onClick={() => setGlassOpacity("o_100")} style={{"backgroundColor":"#ffffff"}}>100%</div>
-              </div>
-            </div>
-            <div id="options" style={{'display': (activeCustomization == 'accesories') ? 'initial':'none'}}>
-              <div id="options_title">SELECT ACCESORIES</div>
-              <div id="options_div">
-                <div className="accesories" id="a_none" onClick={() => setAccesories("a_none")} style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -369px"}} />
-                <div className="accesories" id="a_earphones" onClick={() => setAccesories("a_earphones")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -369px"}} />
-                <div className="accesories" id="a_earring1" onClick={() => setAccesories("a_earring1")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -369px"}} />
-                <div className="accesories" id="a_earring2" onClick={() => setAccesories("a_earring2")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -369px"}} />
-                <div className="accesories" id="a_earring3" onClick={() => setAccesories("a_earring3")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -369px"}} />
-              </div>
-            </div>
-            <div id="options" style={{'display': (activeCustomization == 'tattoos') ? 'initial':'none'}}>
-              <div id="options_title">SELECT TATTOOS</div>
-              <div id="options_div">
-                <div className="tattoos" id="t_non" onClick={() => setTattoos("t_non")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -419px"}} />
-                <div className="tattoos" id="t_harry" onClick={() => setTattoos("t_harry")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -419px"}} />
-                <div className="tattoos" id="t_airbender" onClick={() => setTattoos("t_airbender")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -419px"}} />
-                <div className="tattoos" id="t_krilin" onClick={() => setTattoos("t_krilin")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -419px"}} />
-                <div className="tattoos" id="t_front" onClick={() => setTattoos("t_front")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -419px"}} />
-                <div className="tattoos" id="t_tribal" onClick={() => setTattoos("t_tribal")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-265px -419px"}} />
-                <div className="tattoos" id="t_tribal2" onClick={() => setTattoos("t_tribal2")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-318px -419px"}} />
-                <div className="tattoos" id="t_throat" onClick={() => setTattoos("t_throat")}  style={{"backgroundColor":"#ffffff","backgroundPosition":"-371px -419px"}} />
-              </div>
-            </div>
-            <div id="options" style={{'display': (activeCustomization == 'backgroundcolors') ? 'initial':'none'}}>
-              <div id="options_title">SELECT BACKGROUND COLOR</div>
-              <div id="options_div">
-                <div className="backgroundcolors" id="g_ffffff" onClick={() => setBackgroundColor("#ffffff")} style={{"backgroundColor":"#ffffff"}} />
-                <div className="backgroundcolors" id="g_f5f6eb" onClick={() => setBackgroundColor("#f5f6eb")} style={{"backgroundColor":"#f5f6eb"}} />
-                <div className="backgroundcolors" id="g_e5fde2" onClick={() => setBackgroundColor("#e5fde2")} style={{"backgroundColor":"#e5fde2"}} />
-                <div className="backgroundcolors" id="g_d5effd" onClick={() => setBackgroundColor("#d5effd")} style={{"backgroundColor":"#d5effd"}} />
-                <div className="backgroundcolors" id="g_d1d0fc" onClick={() => setBackgroundColor("#d1d0fc")} style={{"backgroundColor":"#d1d0fc"}} />
-                <div className="backgroundcolors" id="g_f7d0fc" onClick={() => setBackgroundColor("#f7d0fc")} style={{"backgroundColor":"#f7d0fc"}} />
-                <div className="backgroundcolors" id="g_d0d0d0" onClick={() => setBackgroundColor("#d0d0d0")} style={{"backgroundColor":"#d0d0d0"}} />
-              </div>
-            </div>
-          </div>
-
       </div>
       <div className="tippy-tippy-download">
-        <Space direction="horizontal" style={{width: '100%', justifyContent: 'center'}}>
-          <Button type="primary" shape="round" icon={<DownloadOutlined />} onClick={() => { handleSvgDownload()}} >
-            Download as Svg
-          </Button>
-          <Button type="primary" shape="round" icon={<DownloadOutlined />}  onClick={() => {handlePngDownload()}}>
-            Download as Png
-          </Button>
-        </Space>
+        <Flex direction="horizontal" justify="center" align="center" gap="10px">
+          <ConfigProvider
+            button={{
+              className: styles.linearGradientButton,
+            }}
+          >
+            <Button type="primary" size="large" shape="round" icon={<DownloadOutlined />} onClick={() => { handleSvgDownload()}} >
+              SVG
+            </Button>
+            <Button type="primary" size="large" shape="round" icon={<FileImageOutlined />}  onClick={() => {handlePngDownload()}}>
+              PNG
+            </Button>
+          </ConfigProvider>
+        </Flex>
       </div>
       </>
   )
