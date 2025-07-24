@@ -7,7 +7,7 @@ export const initialState = {
         skinColor: '#edb98a',
         hairBack: 'h_longhair',
         tattoos: '',
-        accesories: undefined,
+        accessories: undefined,
         eyes: 'e_default',
         eyebrows: 'eb_default',
         mouth: 'm_default',

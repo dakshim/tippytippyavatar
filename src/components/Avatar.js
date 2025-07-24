@@ -3,50 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector } from '../slices/settings'
 import { renderToString } from 'react-dom/server';
 import { Canvg } from 'canvg';
-import {
-  DownloadOutlined,
-  FileImageOutlined
-} from '@ant-design/icons';
-import { Button, Flex, ConfigProvider } from 'antd';
-import { createStyles } from 'antd-style';
-
-
-const useStyle = createStyles(({ prefixCls, css }) => ({
-  linearGradientButton: css`
-    &.${prefixCls}-btn-primary:not([disabled]):not(.${prefixCls}-btn-dangerous) {
-      > span {
-        position: relative;
-      }
-
-      &::before {
-        content: '';
-        background: linear-gradient(135deg, #6253e1, #04befe);
-        position: absolute;
-        inset: -1px;
-        opacity: 1;
-        transition: all 0.3s;
-        border-radius: inherit;
-      }
-
-      &:hover::before {
-        opacity: 0;
-      }
-    }
-  `,
-}));
-
-
-
+import { 
+  PenTool,
+  FileImage,
+} from "lucide-react";
 
 
 const Avatar = () => {
-  const { styles } = useStyle();
   const {settings} = useSelector(settingsSelector);
   const {
     skinColor,
     hairBack,
     tattoos,
-    accesories,
+    accessories,
     eyes,
     eyebrows,
     mouth,
@@ -129,20 +98,20 @@ const Avatar = () => {
             <path fill='#000000' fillOpacity='0.7' fillRule='nonzero' d='M113 296c0,-1 1,-1 2,-1 0,0 1,1 1,2 -1,1 -3,2 -4,1 0,1 0,1 0,1 4,3 6,6 7,7 0,0 1,0 2,-1 1,0 3,0 4,0l0 0c3,0 6,1 7,5 0,0 0,1 0,1l0 0c0,2 -1,3 -2,4 -1,0 -1,0 -2,0 -1,1 -1,1 -2,1 0,0 -1,0 -1,0 1,1 3,2 6,3 2,2 7,3 13,5 5,1 9,4 12,7 3,4 5,7 6,9 -1,-4 -2,-8 -3,-11 -1,0 -1,0 -1,0 0,-1 0,-1 0,-2 -2,-4 -4,-7 -6,-10 -3,-4 -5,-6 -6,-8 -1,-1 -1,-1 -1,-1 0,1 1,1 1,2 0,1 0,1 0,2 0,1 -1,2 -1,3 -1,1 -2,1 -3,1 0,0 0,0 0,0 -1,-1 -3,-2 -4,-3 -1,-1 -2,-3 -2,-5 0,0 0,-1 0,-1 0,-3 2,-5 4,-6 2,-2 4,-2 5,-2 -5,-11 11,-11 12,2 3,-20 23,-31 23,-10 0,-21 20,-10 23,10 1,-13 17,-13 12,-2 1,0 3,0 5,2 2,1 4,3 4,6 0,0 0,1 0,1 0,2 -1,4 -2,5 -1,1 -3,2 -4,3 0,0 0,0 0,0 -1,0 -2,0 -3,-1 0,-1 -1,-2 -1,-3 0,-1 0,-1 0,-2 0,-1 1,-1 1,-2 0,0 0,0 -1,1 -1,2 -3,4 -6,8 -2,3 -4,6 -6,10 0,1 0,1 0,2l-1 0c-1,3 -2,7 -3,11 1,-2 3,-5 6,-9 3,-3 7,-6 12,-7 6,-2 11,-3 13,-5 3,-1 5,-2 6,-3 0,0 -1,0 -1,0 -1,0 -1,0 -2,-1 -1,0 -1,0 -2,0 -1,-1 -2,-2 -2,-4l0 0c0,0 0,-1 0,-1 1,-4 4,-5 7,-5l0 0c1,0 3,0 4,0 1,1 2,1 2,1 1,-1 3,-4 7,-7 0,0 0,0 0,-1 -1,1 -3,0 -4,-1 0,-1 1,-2 1,-2 1,0 2,0 2,1 2,-2 3,-5 1,-8 -1,-4 -4,-4 -4,-4 0,11 -17,13 -24,5 -2,-2 -3,-5 -2,-7 3,-2 4,2 5,4 1,-18 -10,-24 -10,-24 3,7 4,18 -5,21 -5,2 -12,-5 -4,-4 -4,-4 -12,-3 -19,-2 1,-1 1,-1 2,-2 0,0 0,0 0,0 0,0 0,0 1,-1 2,-1 6,-1 9,-1 0,0 1,0 1,1 1,0 1,0 1,0 0,0 0,0 -1,-1 0,0 0,0 -1,0 -3,-1 -5,-3 -8,-5 2,-1 4,-2 7,-2 0,-1 1,-1 2,-1 1,0 3,1 4,1 3,2 4,4 6,5 3,-6 2,-16 -2,-21 1,4 -2,8 -6,9 -2,1 -4,2 -7,1 -1,0 -2,-1 -3,-2 0,-1 0,-2 0,-3 1,-3 1,-7 0,-11 -1,1 -2,1 -3,1 0,0 0,1 0,1 0,2 -1,4 -1,5 -1,2 -3,4 -4,6 -1,1 -1,2 -2,3 -1,-1 -2,-2 -2,-3 -2,-1 -3,-3 -4,-6 0,-1 -1,-3 -1,-4 0,-1 -1,-2 -1,-2 -1,0 -2,0 -3,-1 0,4 0,8 0,11 0,1 1,2 1,3 -1,1 -2,2 -3,2 -3,1 -5,0 -8,-1 -3,-1 -6,-5 -5,-9 -4,5 -6,15 -2,21 1,-1 3,-3 6,-5 1,0 2,-1 4,-1 1,0 1,0 2,1 3,0 5,1 7,2 -3,2 -6,4 -9,5 0,0 0,0 -1,0 0,1 0,1 -1,1 1,0 1,0 2,0 0,-1 0,-1 1,-1 3,0 6,0 9,1 0,1 1,1 1,1 0,0 0,0 0,0 1,1 1,1 2,2 -8,-1 -15,-2 -19,2 8,-1 1,6 -4,4 -9,-3 -8,-14 -5,-21 0,0 -11,6 -10,24 1,-2 2,-6 5,-4 1,2 0,5 -2,7 -7,8 -24,6 -24,-5 0,0 -3,0 -4,4 -2,3 -1,6 1,8z'/>
           </g>
         </svg>
-        <svg id='accesories' xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' width='360px' height='360px' viewBox='0 0 360 360' preserveAspectRatio='xMidYMid meet'>
-              <g id='a_earphones' style={{'display': (accesories == 'a_earphones' ) ? 'initial':'none'}}>
+        <svg id='accessories' xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' width='360px' height='360px' viewBox='0 0 360 360' preserveAspectRatio='xMidYMid meet'>
+              <g id='a_earphones' style={{'display': (accessories == 'a_earphones' ) ? 'initial':'none'}}>
                 <path fill='#f0f0f0' d='M101 154c1,-2 2,-3 4,-3l4 0c2,0 3,1 3,3l0 10c0,2 -1,4 -3,4l-4 0c-2,0 -3,-2 -4,-4l0 7c0,0 0,1 -1,1l0 0c0,15 10,28 25,46 4,4 7,8 11,13 5,6 10,10 14,13 7,6 13,10 17,22 1,4 1,8 1,14 0,6 -1,13 1,20 2,11 3,25 3,39 0,7 1,15 1,21l0 1 -2 0 0 -1c-1,-6 -1,-14 -1,-21 -1,-14 -1,-28 -3,-38 -2,-7 -2,-15 -1,-21 0,-5 0,-10 -1,-13 -4,-11 -10,-16 -16,-21 -5,-3 -10,-7 -15,-13 -3,-5 -7,-9 -10,-13 -16,-19 -27,-32 -27,-48l0 0c0,0 -1,-1 -1,-1 0,-5 0,-9 0,-14 0,-2 3,-3 5,-3z'/>
                 <path fill='#f0f0f0' d='M259 154c-1,-2 -2,-3 -4,-3l-4 0c-2,0 -3,1 -3,3l0 10c0,2 1,4 3,4l4 0c2,0 3,-2 4,-4l0 7c0,0 0,1 1,1l0 0c0,10 -10,18 -22,27 -9,7 -20,15 -29,26 -4,6 -11,10 -19,15 -13,8 -26,17 -25,29l1 2 2 -1 0 -1c-1,-11 11,-19 23,-27 8,-5 15,-9 20,-15 9,-11 19,-19 29,-26 12,-10 23,-17 23,-29l0 0c0,0 1,-1 1,-1 0,-5 0,-9 0,-14 0,-2 -3,-3 -5,-3z'/>
               </g>
-              <g id='a_earring1' style={{'display': (accesories == 'a_earring1' ) ? 'initial':'none'}}>
+              <g id='a_earring1' style={{'display': (accessories == 'a_earring1' ) ? 'initial':'none'}}>
                 <path fill='#2B2A29' fillRule='nonzero' d='M103 173c0,-1 0,-3 1,-4 2,-1 4,0 4,1 1,1 1,2 2,3 0,1 0,2 0,3 0,3 -1,6 -3,8l0 0c-2,2 -5,3 -8,3 -3,0 -6,-1 -8,-3 -2,-2 -3,-5 -3,-8 0,-3 1,-6 3,-8 1,-2 4,-3 7,-3l0 0 0 1c0,2 0,3 1,4 0,0 0,0 -1,0 -1,1 -2,1 -3,2 -1,1 -2,2 -2,4 0,1 1,3 2,3 1,1 2,2 4,2 1,0 3,-1 3,-2l0 0c1,0 2,-2 2,-3 0,-1 0,-1 0,-2 0,0 0,0 -1,-1z'/>
                 <path fill='#2B2A29' fillRule='nonzero' d='M261 170c0,0 0,0 0,0 0,-1 0,-2 0,-4l0 -1c3,0 6,1 8,3 2,2 3,5 3,8 0,3 -1,6 -3,8l0 0c-2,2 -5,3 -8,3 -3,0 -6,-1 -8,-3 -2,-2 -3,-5 -3,-8 0,-1 0,-2 0,-3 1,-1 1,-2 2,-3 0,-1 2,-2 4,-1 1,1 1,3 1,4 -1,1 -1,1 -1,1 0,1 0,1 0,2 0,1 1,3 2,3 1,1 2,2 3,2 2,0 3,-1 4,-2l0 0c1,0 2,-2 2,-3 0,-2 -1,-3 -2,-4 -1,-1 -2,-2 -4,-2z'/>
               </g>
-              <g id='a_earring2' style={{'display': (accesories == 'a_earring2' ) ? 'initial':'none'}}>
+              <g id='a_earring2' style={{'display': (accessories == 'a_earring2' ) ? 'initial':'none'}}>
                <circle fill='gold' cx='101' cy='176' r='9'/>
                <circle fill='gold' cx='259' cy='176' r='9'/>
               </g>
-              <g id='a_earring3' style={{'display': (accesories == 'a_earring3' ) ? 'initial':'none'}}>
+              <g id='a_earring3' style={{'display': (accessories == 'a_earring3' ) ? 'initial':'none'}}>
                 <path fill='#57A7B3' fillRule='nonzero' d='M108 201c3,0 5,2 7,4 2,2 3,5 3,8 0,3 -1,6 -3,8l0 0c-2,2 -5,4 -8,4 -4,0 -7,-2 -9,-4 -2,-2 -3,-5 -3,-8 0,-3 1,-6 3,-8 2,-2 5,-4 7,-4l0 -25c-1,0 -2,-1 -2,-3 0,-2 2,-3 4,-3 1,0 3,1 3,3 0,2 -1,3 -2,3l0 25zm3 8c-1,-1 -3,-2 -4,-2 -2,0 -3,1 -5,2 -1,1 -1,2 -1,4 0,1 0,3 1,4 2,1 3,2 5,2 1,0 3,-1 4,-2l0 0c1,-1 1,-3 1,-4 0,-2 0,-3 -1,-4z'/>
                 <path fill='#57A7B3' fillRule='nonzero' d='M255 201c2,0 5,2 7,4 2,2 3,5 3,8 0,3 -1,6 -3,8l0 0c-2,2 -5,4 -9,4 -3,0 -6,-2 -8,-4 -2,-2 -3,-5 -3,-8 0,-3 1,-6 3,-8 2,-2 4,-4 7,-4l0 -25c-1,0 -2,-1 -2,-3 0,-2 2,-3 3,-3 2,0 4,1 4,3 0,2 -1,3 -2,3l0 25zm3 8c-2,-1 -3,-2 -5,-2 -1,0 -3,1 -4,2 -1,1 -1,2 -1,4 0,1 0,3 1,4 1,1 3,2 4,2 2,0 3,-1 5,-2l0 0c1,-1 1,-3 1,-4 0,-2 0,-3 -1,-4z'/>
               </g>
@@ -481,20 +450,24 @@ const Avatar = () => {
           <img src={url} />
       </div>
       <div className="tippy-tippy-download">
-        <Flex direction="horizontal" justify="center" align="center" gap="10px">
-          <ConfigProvider
-            button={{
-              className: styles.linearGradientButton,
-            }}
+        <div className="flex flex-row justify-center items-center gap-[10px]">
+          <button
+            onClick={handleSvgDownload}
+            className="flex items-center px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium transition gap-4"
           >
-            <Button type="primary" size="large" shape="round" icon={<DownloadOutlined />} onClick={() => { handleSvgDownload()}} >
-              SVG
-            </Button>
-            <Button type="primary" size="large" shape="round" icon={<FileImageOutlined />}  onClick={() => {handlePngDownload()}}>
-              PNG
-            </Button>
-          </ConfigProvider>
-        </Flex>
+            <PenTool />
+            
+            SVG
+          </button>
+          <button
+            onClick={handlePngDownload}
+            className="flex items-center px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium transition gap-4"
+          >
+            <FileImage />
+            
+            PNG
+          </button>
+        </div>
       </div>
       </>
   )

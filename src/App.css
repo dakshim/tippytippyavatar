@@ -90,7 +90,7 @@ body {
 .glasses,
 .glassopacity,
 .tattoos,
-.accesories {
+.accessories {
   flex: 0 0 auto;
   top: 0;
   width: 53px;
@@ -109,7 +109,7 @@ body {
 .clothes,
 .glasses,
 .tattoos,
-.accesories {
+.accessories {
   background-image: url("menu_sprites.png");
 }
 .glassopacity {
@@ -144,8 +144,4 @@ body {
 
 .tippy-tippy-btn {
   max-width: 30%;
-}
-
-.tippy-tippy-col {
-  max-width: 33%;
 }

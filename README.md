@@ -1,6 +1,6 @@
 # 🎨 TippyTippyAvatar
 
-**TippyTippyAvatar** is a React.js-based avatar generator that lets users customize avatars by manipulating SVGs in a fun and intuitive interface. It uses [Ant Design](https://ant.design/) for UI components and provides a feature to export avatars as PNG images using the Canvas and Blob APIs.
+**TippyTippyAvatar** is a playful digital space where toddlers can customize and create their very own avatar using intuitive mouse-based controls. Designed to spark creativity and develop fine motor skills, it turns simple clicks and drags into imaginative storytelling. Whether dressing up, changing colors, or picking accessories—it's all about joyful exploration and early tech confidence.
 
 🌐 [Live Demo](https://dakshim.github.io/tippytippyavatar/)
 
@@ -9,7 +9,7 @@
 ## 🛠️ Built With
 
 - ⚛️ [React.js](https://reactjs.org/) – Modern front-end JavaScript library
-- 🎨 [Ant Design](https://ant.design/) – Elegant and easy-to-use React UI library
+- 🎨 [TailwindCSS](https://tailwindcss.com) – Elegant and easy-to-use React UI library
 - 🖼️ SVG Manipulation – For creating and customizing avatars
 - 🧪 Blob + Canvas APIs – To generate and download avatar as PNG
 
