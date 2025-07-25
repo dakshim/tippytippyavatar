@@ -10,7 +10,7 @@
 
 - ⚛️ [React.js](https://reactjs.org/) – Modern front-end JavaScript library
 - 🎨 [TailwindCSS](https://tailwindcss.com) – Elegant and easy-to-use React UI library
-- 🖼️ SVG Manipulation – For creating and customizing avatars
+- 🖼️ SVG Exported from Avataaars by [Pablo Stanley](https://x.com/pablostanley)
 - 🧪 Blob + Canvas APIs – To generate and download avatar as PNG
 
 ---
