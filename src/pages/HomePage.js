@@ -292,9 +292,6 @@ const HomePage = () => {
             </div>
       </section>
 
-      {/* Spacer to push footer to bottom */}
-      <div className="flex-grow"></div>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 px-6 py-4 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0 gap-1">
         <div className="md:flex-1 text-center md:text-left font-semibold">
