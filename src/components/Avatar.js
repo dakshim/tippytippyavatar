@@ -454,7 +454,8 @@ const Avatar = () => {
         <div className="flex flex-row justify-center items-center gap-[10px]">
           <button
             onClick={handleSvgDownload}
-            className="flex items-center px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium transition gap-4"
+            data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content="Download as SVG"
+            className="flex items-center px-6 py-2 rounded-full transition transition-all delay-1000 bg-gradient-to-tr from-cyan-500 to-blue-500  hover:from-cyan-400 hover:to-blue-400 text-white text-lg font-medium transition gap-4"
           >
             <PenTool />
             
@@ -462,7 +463,8 @@ const Avatar = () => {
           </button>
           <button
             onClick={handlePngDownload}
-            className="flex items-center px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium transition gap-4"
+            data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content="Download as PNG"
+            className="flex items-center px-6 py-2 rounded-full transition transition-all delay-1000 bg-gradient-to-tr from-sky-500 to-indigo-500 hover:from-sky-400 hover:to-indigo-400 text-white text-lg font-medium transition gap-4"
           >
             <FileImage />
             

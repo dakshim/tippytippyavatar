@@ -47,15 +47,22 @@ import {MouthConcerned,
     MouthVomit
 } from "./Mouth";
 
+import {
+  ClothingHoodie,
+  ClothingOverall,
+  ClothingVneck,
+  ClothingBlazer
+} from "./Clothing";
+
 
 export const skinColors = [
-    { id: 's_ffdbb4', color: '#ffdbb4' },
-    { id: 's_edb98a', color: '#edb98a' },
-    { id: 's_fd9841', color: '#fd9841' },
-    { id: 's_fcee93', color: '#fcee93' },   
-    { id: 's_d08b5b', color: '#d08b5b' },
-    { id: 's_ae5d29', color: '#ae5d29' },
-    { id: 's_614335', color: '#614335' }
+    { name: "Light", id: 's_ffdbb4', color: '#ffdbb4' },
+    { name: "Pale", id: 's_edb98a', color: '#edb98a' },
+    { name: "Tanned", id: 's_fd9841', color: '#fd9841' },
+    { name: "Yellow", id: 's_fcee93', color: '#fcee93' },
+    { name: "Brown", id: 's_d08b5b', color: '#d08b5b' },
+    { name: "Dark Brown", id: 's_ae5d29', color: '#ae5d29' },
+    { name: "Black", id: 's_614335', color: '#614335' }
 ];
 
 export const features = [
@@ -73,13 +80,13 @@ export const features = [
 
 
 export const backgroundColors = [
-    { id: 'g_ffffff', color: '#ffffff' },
-    { id: 'g_f5f6eb', color: '#f5f6eb' },
-    { id: 'g_e5fde2', color: '#e5fde2' },
-    { id: 'g_d5effd', color: '#d5effd' },
-    { id: 'g_d1d0fc', color: '#d1d0fc' },
-    { id: 'g_f7d0fc', color: '#f7d0fc' },
-    { id: 'g_d0d0d0', color: '#d0d0d0' }
+    { name: "White", id: 'g_ffffff', color: '#ffffff' },
+    { name: "Light Gray", id: 'g_f5f6eb', color: '#f5f6eb' },
+    { name: "Mint", id: 'g_e5fde2', color: '#e5fde2' },
+    { name: "Sky Blue", id: 'g_d5effd', color: '#d5effd' },
+    { name: "Lavender", id: 'g_d1d0fc', color: '#d1d0fc' },
+    { name: "Pink", id: 'g_f7d0fc', color: '#f7d0fc' },
+    { name: "Gray", id: 'g_d0d0d0', color: '#d0d0d0' }
 ];
 
 export const eyes = [
@@ -107,18 +114,18 @@ export const facialHairs = [
 ];
 
 export const fabricColors = [
-  { id: 'f_545454', color: '#545454' },
-  { id: 'f_65c9ff', color: '#65c9ff' },
-  { id: 'f_5199e4', color: '#5199e4' },
-  { id: 'f_25557c', color: '#25557c' },
-  { id: 'f_e6e6e6', color: '#e6e6e6' },
-  { id: 'f_929598', color: '#929598' },
-  { id: 'f_a7ffc4', color: '#a7ffc4' },
-  { id: 'f_ffdeb5', color: '#ffdeb5' },
-  { id: 'f_ffafb9', color: '#ffafb9' },
-  { id: 'f_ffffb1', color: '#ffffb1' },
-  { id: 'f_ff5c5c', color: '#ff5c5c' },
-  { id: 'f_e3adff', color: '#e3adff' },
+  { name: "Dark Gray", id: 'f_545454', color: '#545454' },
+  { name: "Sky Blue", id: 'f_65c9ff', color: '#65c9ff' },
+  { name: "Blue", id: 'f_5199e4', color: '#5199e4' },
+  { name: "Teal", id: 'f_25557c', color: '#25557c' },
+  { name: "Light Gray", id: 'f_e6e6e6', color: '#e6e6e6' },
+  { name: "Gray", id: 'f_929598', color: '#929598' },
+  { name: "Mint", id: 'f_a7ffc4', color: '#a7ffc4' },
+  { name: "Peach", id: 'f_ffdeb5', color: '#ffdeb5' },
+  { name: "Pink", id: 'f_ffafb9', color: '#ffafb9' },
+  { name: "Yellow", id: 'f_ffffb1', color: '#ffffb1' },
+  { name: "Red", id: 'f_ff5c5c', color: '#ff5c5c' },
+  { name: "Purple", id: 'f_e3adff', color: '#e3adff' },
 ];
 
 export const mouths = [
@@ -134,4 +141,11 @@ export const mouths = [
   { name: "Tongue Out", id: "m_tongue", icon: MouthTongue },
   { name: "Twinkle", id: "m_twinkle", icon: MouthTwinkle },
   { name: "Vomit", id: "m_vomit", icon: MouthVomit }
+];
+
+export const clothing = [
+  { name: "Hoodie", id: "c_hoodie", icon: ClothingHoodie },
+  { name: "Overall", id: "c_overall", icon: ClothingOverall },
+  { name: "V-neck", id: "c_vneck", icon: ClothingVneck },
+  { name: "Blazer", id: "c_blazer", icon: ClothingBlazer }
 ];

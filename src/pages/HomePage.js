@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
+import { Tooltip } from 'react-tooltip';
 import Avatar from 'components/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
-import { settingsSelector } from '../slices/settings'
-import { setSettings } from 'slices/settings';
-import { features, skinColors, backgroundColors, eyes, facialHairs, fabricColors, mouths } from 'lib/options';
-
-
-  
+import { settingsSelector, setSettings } from '../slices/settings'
+import { features, skinColors, backgroundColors, eyes, facialHairs, fabricColors, mouths, clothing } from 'lib/options';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -26,11 +23,12 @@ const HomePage = () => {
   };
 
   return (
+    <>
     <div className="min-h-screen flex flex-col">
       {/* Topbar */}
-      <header className="flex justify-between items-center bg-gray-800 text-white px-6 py-3">
-        <div className="font-bold text-lg">TippyTippy Avatar</div>
-        <button className="hover:underline">Help</button>
+      <header className="flex justify-between items-center  bg-gradient-to-r from-sky-500 to-indigo-500  text-white px-6 py-3">
+        <div className="tippy-tippy-logo text-lg"><span className="tippy-tippy-brand">TippyTippy</span> Avatar</div>
+        {/* <button className="hover:underline">Help</button> */}
       </header>
 
       {/* Second Row - 3 Columns */}
@@ -77,8 +75,8 @@ const HomePage = () => {
 
       {/* New 3-Column Row */}
       <section className="flex flex-grow flex-col xl:flex-row gap-4 px-4 py-6 bg-white">
-            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-8"><Avatar activeCustomization={activeCustomization} /></div>
-            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-8 gap-4">
+            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8"><Avatar activeCustomization={activeCustomization} /></div>
+             <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8 gap-4">
               <div id='options_title'>SELECT FEATURE</div>
               <div className="flex gap-2 items-center justify-center flex-row flex-wrap">
                 <div className="flex flex-wrap justify-center items-center gap-6">
@@ -93,7 +91,8 @@ const HomePage = () => {
                         id={button.id}
                         onClick={() => setActiveCustomization(button.id)}
                         type="button"
-                        className={`tippy-tippy-btn w-32 h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
+                        data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={button.name}
+                        className={`tippy-tippy-btn w-24 h-24 md:w-32 md:h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
                           buttonType === 'primary' 
                             ? 'bg-blue-500 border-blue-600 text-white shadow-md' 
                             : 'bg-white border-gray-200 text-gray-700 hover:shadow-md hover:border-blue-300 hover:bg-blue-50'
@@ -109,7 +108,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-8">
+            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8">
               <div id='options_wrap'>
 
                 {(activeCustomization === 'eyes') &&  <div id='options' className='flex flex-col gap-4'>
@@ -118,7 +117,7 @@ const HomePage = () => {
                     {eyes.map((eye) => {
                       const EyeComponent = eye.icon;
                       return (
-                        <div className="eyes tippy-tippy-option" id={eye.id} onClick={() => handleSettingsChange('eyes', eye.id)} style={{"backgroundColor": skinColor}} key={eye.id}>
+                        <div className="eyes tippy-tippy-option" id={eye.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={eye.name} onClick={() => handleSettingsChange('eyes', eye.id)} style={{"backgroundColor": skinColor}} key={eye.id}>
                           {eye.icon && <EyeComponent className="eyes-svg" />}
                         </div>
                       );
@@ -146,7 +145,7 @@ const HomePage = () => {
                     {mouths.map((mouth) => {
                       const MouthComponent = mouth.icon;
                       return (
-                        <div className="mouths tippy-tippy-option" id={mouth.id} onClick={() => handleSettingsChange('mouth', mouth.id)} style={{"backgroundColor": skinColor}} key={mouth.id}>
+                        <div className="mouths tippy-tippy-option" id={mouth.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={mouth.name} onClick={() => handleSettingsChange('mouth', mouth.id)} style={{"backgroundColor": skinColor}} key={mouth.id}>
                           {mouth.icon && <MouthComponent className="mouths-svg" />}
                         </div>
                       );
@@ -199,7 +198,7 @@ const HomePage = () => {
                   {facialHairs.map((hair) => {
                       const HairComponent = hair.icon;
                       return (
-                        <div className="facialhairs tippy-tippy-option" id={hair.id} onClick={() => handleSettingsChange('facialHair', hair.id)} style={{"backgroundColor": skinColor}} key={hair.id}>
+                        <div className="facialhairs tippy-tippy-option" id={hair.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={hair.name} onClick={() => handleSettingsChange('facialHair', hair.id)} style={{"backgroundColor": skinColor}} key={hair.id}>
                           {hair.icon && <HairComponent className="facialhairs-svg" />}
                         </div>
                       );
@@ -209,18 +208,21 @@ const HomePage = () => {
               {(activeCustomization === 'clothes') &&  <div id='options' className='flex flex-col gap-4'>
                 <div id="options_title">SELECT CLOTHES</div>
                 <div id="options_div">
-                  <div className="clothes" id="c_vneck" onClick={() => handleSettingsChange('cloth',"c_vneck")} style={{"backgroundColor":"#ffffff","backgroundPosition":"0px -265px"}} />
-                  <div className="clothes" id="c_sweater" onClick={() => handleSettingsChange('cloth',"c_sweater")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-53px -265px"}} />
-                  <div className="clothes" id="c_hoodie" onClick={() => handleSettingsChange('cloth',"c_hoodie")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-106px -265px"}} />
-                  <div className="clothes" id="c_overall" onClick={() => handleSettingsChange('cloth',"c_overall")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-159px -265px"}} />
-                  <div className="clothes" id="c_blazer" onClick={() => handleSettingsChange('cloth',"c_blazer")} style={{"backgroundColor":"#ffffff","backgroundPosition":"-212px -265px"}} />
+                  { clothing.map((cloth) => {
+                    const ClothComponent = cloth.icon;
+                    return (
+                      <div className="clothes tippy-tippy-option bg-white" id={cloth.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={cloth.name} onClick={() => handleSettingsChange('cloth', cloth.id)}  key={cloth.id}>
+                        {cloth.icon && <ClothComponent className="clothes-svg" />}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>}
               {(activeCustomization === 'clothes') &&  <div id='options' className='flex flex-col gap-4'>
                 <div id="options_title">SELECT FABRIC COLOR</div>
                 <div id="options_div">
                   { fabricColors.map((fabric) => (
-                    <div className="fabriccolors tippy-tippy-option-color" id={fabric.id} onClick={() => handleSettingsChange('fabricColor', fabric.color)} style={{"backgroundColor": fabric.color}} />
+                    <div className="fabriccolors tippy-tippy-option-color" id={fabric.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={fabric.name} onClick={() => handleSettingsChange('fabricColor', fabric.color)} style={{"backgroundColor": fabric.color}} />
                   ))}
                 </div>
               </div>}
@@ -274,7 +276,7 @@ const HomePage = () => {
                 <div id="options_title">SELECT BACKGROUND COLOR</div>
                 <div id="options_div">
                   {backgroundColors.map((color, index) => (
-                    <div className="backgroundcolors tippy-tippy-option-color" id={color.id} onClick={() => handleSettingsChange('backgroundColor', color.color)} style={{"backgroundColor": color.color}} key={index}></div>
+                    <div className="backgroundcolors tippy-tippy-option-color" id={color.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={color.name} onClick={() => handleSettingsChange('backgroundColor', color.color)} style={{"backgroundColor": color.color}} key={index}></div>
                   ))}
                 </div>
               </div>}
@@ -282,7 +284,7 @@ const HomePage = () => {
                     <div id='options_title'>SELECT SKIN COLOR</div>
                     <div id='options_div'>
                       {skinColors.map((color, index) => (
-                        <div className='skins tippy-tippy-option-color' id={color.id} onClick={() => handleSettingsChange('skinColor', color.color)} style={{'backgroundColor': color.color}} key={index}></div>
+                        <div className='skins tippy-tippy-option-color' id={color.id} data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={color.name} onClick={() => handleSettingsChange('skinColor', color.color)} style={{'backgroundColor': color.color}} key={index}></div>
                       ))}
                     </div>
                 </div>}
@@ -298,11 +300,13 @@ const HomePage = () => {
         <div className="md:flex-1 text-center md:text-left font-semibold">
           TippyTippy Avatar
         </div>
-        <div className="md:flex-1 text-center md:text-right text-sm italic">
-          Crafted with <span className="text-red-500">♥</span> by Dakshim Chhabra
+        <div className="md:flex-1 flex-row text-center md:text-right text-sm italic">
+          Crafted with <span>❤️</span> by <a href="https://github.com/dakshim" target="_blank"> Dakshim Chhabra</a>
         </div>
       </footer>
     </div>
+    <Tooltip id="tippy-tippy-tooltip" />
+    </>
 
 
 
