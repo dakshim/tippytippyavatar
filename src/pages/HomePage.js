@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
+import { handleSettingsChange } from 'utils/shared';
 import Avatar from 'components/Avatar';
+import FeaturesNav from 'components/FeaturesNav';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector, setSettings } from '../slices/settings'
 import { features, skinColors, backgroundColors, eyes, facialHairs, fabricColors, mouths, clothing } from 'lib/options';
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const [activeCustomization, setActiveCustomization] = useState('settings');
   const [projectName, setProjectName] = useState("TippyTippy Avatar_" + Date.now());
   const [editing, setEditing] = useState(false);
 
@@ -15,18 +16,16 @@ const HomePage = () => {
   const handleSave = () => setEditing(false);
   const {settings} = useSelector(settingsSelector);
   const {
+    activeCustomization,
     skinColor
   } = settings;
 
-  const handleSettingsChange = (key, value) => {
-    dispatch(setSettings({ [key]: value }));
-  };
 
   return (
     <>
     <div className="min-h-screen flex flex-col">
       {/* Topbar */}
-      <header className="flex justify-between items-center  bg-gradient-to-r from-sky-500 to-indigo-500  text-white px-6 py-3">
+      <header className="flex justify-center items-center  bg-gradient-to-r from-sky-500 to-indigo-500  text-white px-6 py-3">
         <div className="tippy-tippy-logo text-lg"><span className="tippy-tippy-brand">TippyTippy</span> Avatar</div>
         {/* <button className="hover:underline">Help</button> */}
       </header>
@@ -74,39 +73,10 @@ const HomePage = () => {
       </section> */}
 
       {/* New 3-Column Row */}
-      <section className="flex flex-grow flex-col xl:flex-row gap-4 px-4 py-6 bg-white">
-            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8"><Avatar activeCustomization={activeCustomization} /></div>
-             <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8 gap-4">
-              <div id='options_title'>SELECT FEATURE</div>
-              <div className="flex gap-2 items-center justify-center flex-row flex-wrap">
-                <div className="flex flex-wrap justify-center items-center gap-6">
-                  {features.map((button) => {
-                    const IconComponent = button.icon;
-                    const isActive = activeCustomization === button.id;
-                    const buttonType = isActive ? 'primary' : 'default';
-                    
-                    return (
-                      <button
-                        key={button.id}
-                        id={button.id}
-                        onClick={() => setActiveCustomization(button.id)}
-                        type="button"
-                        data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={button.name}
-                        className={`tippy-tippy-btn w-24 h-24 md:w-32 md:h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
-                          buttonType === 'primary' 
-                            ? 'bg-blue-500 border-blue-600 text-white shadow-md' 
-                            : 'bg-white border-gray-200 text-gray-700 hover:shadow-md hover:border-blue-300 hover:bg-blue-50'
-                        }`}
-                      >
-                        <IconComponent className="w-8 h-8" />
-                        <span className="text-sm font-medium text-center px-2">
-                          {button.name}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+      <section className="flex flex-grow flex-col xl:flex-row gap-0 sm:gap-4 px-0 py-0 md:px-4 sm:py-6 bg-white">
+            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-0 sm:p-4 md:p-8"><Avatar activeCustomization={activeCustomization} /></div>
+            <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-0 sm:p-4 md:p-8 gap-4">
+              <FeaturesNav />
             </div>
             <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-4 md:p-8">
               <div id='options_wrap'>

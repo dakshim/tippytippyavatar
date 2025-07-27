@@ -4,6 +4,7 @@ export const initialState = {
     loading: false,
     hasErrors: false,
     settings: {
+        activeCustomization:'settings',
         skinColor: '#edb98a',
         hairBack: 'h_longhair',
         tattoos: '',
