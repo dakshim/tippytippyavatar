@@ -5,7 +5,7 @@ import Avatar from 'components/Avatar';
 import FeaturesNav from 'components/FeaturesNav';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingsSelector, setSettings } from '../slices/settings'
-import { features, skinColors, backgroundColors, eyes, facialHairs, fabricColors, mouths, clothing } from 'lib/options';
+import { skinColors, backgroundColors, eyes, facialHairs, fabricColors, mouths, clothing } from 'lib/options';
 
 const HomePage = () => {
   const dispatch = useDispatch();

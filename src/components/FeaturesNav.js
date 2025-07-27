@@ -41,7 +41,7 @@ const FeaturesNav = () => {
             </button>
             {/*** Future Slide Buttons */}
             
-            <div className={`flex flex-wrap justify-center items-center p-4 gap-2 sm:gap-4 md:gap-6`} >
+            <div className={`flex flex-wrap justify-center items-center p-4 md:p-2 gap-2 sm:gap-4 md:gap-2 lg:gap-4`} >
                 {features.map((button) => {
                 const IconComponent = button.icon;
                 const isActive = activeCustomization === button.id;
@@ -54,7 +54,7 @@ const FeaturesNav = () => {
                     onClick={() => handleSettingsChange('activeCustomization', button.id)}
                     type="button"
                     data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={button.name}
-                    className={`tippy-tippy-btn block w-1/4 h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
+                    className={`tippy-tippy-btn block w-1/4 h-24 sm:h-28 md:h-28 lg:h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
                         buttonType === 'primary' 
                         ? 'bg-blue-500 border-blue-600 text-white shadow-md' 
                         : 'bg-white border-gray-200 text-gray-700 hover:shadow-md hover:border-blue-300 hover:bg-blue-50'

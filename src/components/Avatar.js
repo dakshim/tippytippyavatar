@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { settingsSelector } from '../slices/settings'
+import { settingsSelector } from 'slices/settings'
 import { renderToString } from 'react-dom/server';
 import { Canvg } from 'canvg';
 import { 
