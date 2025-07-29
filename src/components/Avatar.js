@@ -448,11 +448,11 @@ const Avatar = () => {
   return(
     <>
 
-      <div id='avatar' className="relative w-[360px] h-[380px] flex justify-center items-center">
-          <img src={url} alt="TippyTippy Avatar" />
+      <div id='avatar' className="relative w-full flex justify-start md:justify-center items-center p-2">
+          <img src={url} alt="TippyTippy Avatar" className="border-2 border-gray-300 rounded-lg" />
       </div>
       <div className="tippy-tippy-download">
-        <div className="flex p-4 flex-row justify-center items-center gap-[10px]">
+        <div className="flex p-4 flex-row justify-start md:justify-center items-center gap-[10px]">
           <button
             onClick={handleSvgDownload}
             data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content="Download as SVG"

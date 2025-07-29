@@ -6,26 +6,17 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { features } from 'lib/options';
 
 const FeaturesNav = ({ type = 'desktop' }) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const totalSlides = features.length/3;
     const {settings} = useSelector(settingsSelector);
     const {
         activeCustomization
     } = settings;
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    };
 
     return(
     <>
-        <div className="flex gap-2 md:h-auto items-center justify-center flex-row flex-wrap relative">
+        <div className="flex gap-2 md:h-auto items-center justify-items-start md:justify-center flex-row flex-wrap relative">
             
-            <div className={`flex flex-wrap justify-center items-center p-4 md:p-2 gap-2 sm:gap-4 md:gap-2 lg:gap-4`} >
+            <div className={`flex flex-wrap justify-items-start md:justify-center items-center md:p-4 md:p-2  sm:gap-4 md:gap-2 lg:gap-4`} >
                 {features.map((button) => {
                 const IconComponent = button.icon;
                 const isActive = activeCustomization === button.id;
@@ -38,7 +29,7 @@ const FeaturesNav = ({ type = 'desktop' }) => {
                     onClick={() => handleSettingsChange('activeCustomization', button.id)}
                     type="button"
                     data-tooltip-id="tippy-tippy-tooltip" data-tooltip-content={button.name}
-                    className={`tippy-tippy-btn block ${type == 'desktop' ? 'w-1/4' : 'w-full'} h-24 sm:h-28 md:h-28 lg:h-32 border-2 rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
+                    className={`tippy-tippy-btn block ${type == 'desktop' ? 'w-1/4 md:h-28 lg:h-32' : 'w-full h-16 sm:h-28'} border-b-2   md:border-2 md:rounded-xl shadow-sm transition-all duration-200 flex flex-col items-center justify-center gap-2 active:scale-95 ${
                         buttonType === 'primary' 
                         ? 'bg-blue-500 border-blue-600 text-white shadow-md' 
                         : 'bg-white border-gray-200 text-gray-700 hover:shadow-md hover:border-blue-300 hover:bg-blue-50'

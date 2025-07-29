@@ -75,14 +75,14 @@ const HomePage = () => {
 
       {/* New 3-Column Row */}
 
-        <aside className="tippy-tippy-col titppy-tippy-sidebar-col w-[100px] flex-col bg-blue-50 rounded shadow min-h-[120px] flex md:hidden items-center justify-center p-0 sm:p-4 md:p-8"><FeaturesNav type={'mobile'} /></aside>
-        <section className="flex flex-grow flex-col xl:flex-row gap-0 sm:gap-4 px-0 py-0 md:px-4 sm:py-6 bg-white">
+        <aside className="tippy-tippy-col titppy-tippy-sidebar-col bg-white w-[100px] flex-col rounded shadow min-h-[120px] flex md:hidden items-center md:justify-center p-0 sm:p-4 md:p-8"><FeaturesNav type={'mobile'} /></aside>
+        <section className="flex flex-grow flex-col xl:flex-row gap-0 sm:gap-4 px-0 py-0 md:px-4 sm:py-6 bg-blue-50 md:bg-white">
               
-              <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-center p-0 sm:p-4 md:p-8"><Avatar activeCustomization={activeCustomization} /></div>
-              <div className="tippy-tippy-col hidden flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] md:flex items-center justify-center p-0 sm:p-4 md:p-8 gap-4">
+              <div className="tippy-tippy-col flex-col md:flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-items-start md:justify-center p-0 sm:p-4 md:p-8"><Avatar /></div>
+              <div className="tippy-tippy-col hidden flex-col md:flex-1 bg-blue-50 md:rounded md:shadow min-h-[120px] md:flex items-center justify-center p-0 sm:p-4 md:p-8 gap-4">
                 <FeaturesNav type="desktop" />
               </div>
-              <div className="tippy-tippy-col flex-col flex-1 bg-blue-50 rounded shadow min-h-[120px] flex items-center justify-items-start md:justify-center p-4 md:p-8">
+              <div className="tippy-tippy-col flex-col md:flex-1 bg-blue-50 md:rounded md:shadow md:min-h-[120px] flex items-center justify-items-start md:justify-center p-4 md:p-8">
                 <div id='options_wrap'>
 
                   {(activeCustomization === 'eyes') &&  <div id='options' className='flex flex-col gap-4'>
